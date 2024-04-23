@@ -32,6 +32,26 @@ class Service {
 	private static $instance;
 
 	/**
+	 * Container instance.
+	 *
+	 * @since 1.0.1
+	 *
+	 * @var Container
+	 *
+	 * @access protected
+	 */
+	protected Container $container;
+
+	/**
+	 * Service constructor.
+	 *
+	 * @since 1.0.1
+	 */
+	public function __construct() {
+		$this->container = Container::instance();
+	}
+
+	/**
 	 * Get the service instance.
 	 *
 	 * @since 1.0.0
@@ -70,12 +90,11 @@ class Service {
 	 * Register WordPress classes
 	 *
 	 * @since 1.0.0
+	 * @since 1.0.1 Refactored container and container builder usage.
 	 *
 	 * @return Service
 	 */
 	public function set_services(): Service {
-		$container = Container::instance();
-
 		$services = apply_filters(
 			'wp_dev_load_services',
 			array()
@@ -83,8 +102,43 @@ class Service {
 
 		foreach ( $services as $service ) {
 			// Call the __invoke() method of the class.
-			$container->get( $service )();
+			$this->container->get( $service )();
 		}
+
+		return $this;
+	}
+
+	/**
+	 * Set environment variables from WordPress.
+	 *
+	 * @since 1.0.1 Added support for WordPress environment variables.
+	 *
+	 * @return Service
+	 */
+	public function set_wp_envs(): Service {
+		$builder    = $this->container->get_container_builder();
+		$upload_dir = wp_upload_dir();
+
+		$builder->setParameter( 'wp_env(WP_ENVIRONMENT_TYPE)', WP_ENVIRONMENT_TYPE );
+
+		$builder->setParameter( 'wp_env(DB_NAME)', DB_NAME );
+		$builder->setParameter( 'wp_env(DB_USER)', DB_USER );
+		$builder->setParameter( 'wp_env(DB_PASSWORD)', DB_PASSWORD );
+		$builder->setParameter( 'wp_env(DB_HOST)', DB_HOST );
+		$builder->setParameter( 'wp_env(DB_CHARSET)', DB_CHARSET );
+		$builder->setParameter( 'wp_env(DB_COLLATE)', DB_COLLATE );
+
+		$builder->setParameter( 'wp_env(WP_CONTENT_DIR)', WP_CONTENT_DIR );
+		$builder->setParameter( 'wp_env(WP_CONTENT_URL)', content_url() );
+
+		$builder->setParameter( 'wp_env(WP_PLUGIN_DIR)', WP_PLUGIN_DIR );
+		$builder->setParameter( 'wp_env(WP_PLUGIN_URL)', plugins_url() );
+
+		$builder->setParameter( 'wp_env(WP_UPLOAD_DIR)', $upload_dir['basedir'] );
+		$builder->setParameter( 'wp_env(WP_UPLOAD_URL)', $upload_dir['baseurl'] );
+
+		$builder->setParameter( 'wp_env(WP_SITE_URL)', site_url() );
+		$builder->setParameter( 'wp_env(WP_HOME_URL)', home_url() );
 
 		return $this;
 	}
@@ -96,27 +150,28 @@ class Service {
 	 * ContainerBuilder is available without loaded config file.
 	 *
 	 * @since 1.0.0
+	 * @since 1.0.1 Refactored container and container builder usage.
 	 *
 	 * @param string $path The plugin path.
 	 *
 	 * @return ConfigInterface
 	 */
 	private function register_config( string $path ): ConfigInterface {
-		$container = Container::instance();
+		$builder = $this->container->get_container_builder();
 
-		$container
+		$this->container
 			->register( 'fileLocator', FileLocator::class )
 			->addArgument( $path );
 
-		$container
+		$this->container
 			->register( 'yamlFileLoader', YamlFileLoader::class )
-			->addArgument( $container->get_container_builder() )
+			->addArgument( $builder )
 			->addArgument( new Reference( 'fileLocator' ) );
 
-		$container
+		$this->container
 			->register( 'config', Config::class )
 			->addArgument( new Reference( 'yamlFileLoader' ) );
 
-		return $container->get( 'config' );
+		return $this->container->get( 'config' );
 	}
 }

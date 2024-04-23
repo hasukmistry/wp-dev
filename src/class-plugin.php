@@ -45,6 +45,7 @@ class Plugin {
 	 * Initialize the plugin.
 	 *
 	 * @since 1.0.0
+	 * @since 1.0.1 Utilised set_wp_envs to set environment variables.
 	 *
 	 * @return void
 	 *
@@ -73,6 +74,7 @@ class Plugin {
 						$config_dir,
 						$config_file
 					)
+					->set_wp_envs()
 					->set_services();
 			}
 		);
