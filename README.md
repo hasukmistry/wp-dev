@@ -19,6 +19,7 @@ This plugin introduces following features:
     - [Changing a Config Dir](#changing-a-config-dir)
     - [Changing a Config File](#changing-a-config-file)
 - [Registering Services](#registering-services)
+- [License](#license)
 
 ## Building WordPress Plugin Archive
 
@@ -104,3 +105,7 @@ add_filter( 'wp_dev_load_services', function( array $service_aliases ): array {
 	return array_merge( $service_aliases, array( 'myService' ) );
 });
 ```
+
+## License
+
+This repository is a free software, and is released under the terms of the GNU General Public License version 2 or (at your option) any later version. See [LICENSE](./LICENSE) for complete license.

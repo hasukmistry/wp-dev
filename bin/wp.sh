@@ -10,6 +10,7 @@ cp ./composer.json ./temp-plugin/
 cp ./composer.lock ./temp-plugin/
 cp ./README.md ./temp-plugin/
 cp ./wp-dev.php ./temp-plugin/
+cp ./LICENSE ./temp-plugin/
 
 # 3 - Copying necessary directories to temp-plugin directory
 mkdir -p ./temp-plugin/src/ && cp -R ./src/* ./temp-plugin/src/
