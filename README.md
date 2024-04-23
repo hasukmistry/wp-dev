@@ -18,6 +18,7 @@ This plugin introduces following features:
 - [Creating a Yaml File](#creating-a-yaml-file)
     - [Changing a Config Dir](#changing-a-config-dir)
     - [Changing a Config File](#changing-a-config-file)
+    - [Using an Environment Variables](#using-an-environment-variables)
 - [Registering Services](#registering-services)
 - [Examples](#examples)
 - [License](#license)
@@ -77,6 +78,38 @@ By default, the plugin will look for the **services.yaml** in the **`/wp-content
 add_filter( 'wp_dev_config_file', function( string $config_file ): string {
 	return 'custom.yaml';
 });
+```
+
+### Using an Environment Variables
+
+This plugin also adds support for WordPress environment variables via a configuration file. By default following environment variables are supported,
+
+- WP_ENVIRONMENT_TYPE
+- DB_NAME
+- DB_USER
+- DB_PASSWORD 
+- DB_HOST
+- DB_CHARSET
+- DB_COLLATE 
+- WP_CONTENT_DIR
+- WP_CONTENT_URL
+- WP_PLUGIN_DIR
+- WP_PLUGIN_URL
+- WP_UPLOAD_DIR
+- WP_UPLOAD_URL
+- WP_SITE_URL
+- WP_HOME_URL
+
+When using it in the configuration file, **wp_env** should be prefixed with the above variable name.
+
+For example,
+
+```yaml
+services:
+    myService:
+        class: MyService
+        arguments:
+            db: '%wp_env(DB_NAME)%'
 ```
 
 ## Registering Services
