@@ -25,8 +25,6 @@ class Config implements ConfigInterface {
 	 * @since 1.0.0
 	 *
 	 * @param YamlFileLoader $loader The YAML file loader.
-	 *
-	 * @return void
 	 */
 	public function __construct( protected YamlFileLoader $loader ) {
 	}
