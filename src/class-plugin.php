@@ -69,8 +69,7 @@ class Plugin {
 						$config_file
 					)
 					->set_services();
-			},
-			99
+			}
 		);
 	}
 }
