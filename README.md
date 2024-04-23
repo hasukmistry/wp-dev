@@ -8,4 +8,4 @@ This plugin introduces following features:
 
     - It allows you to standardize and centralize the way objects are constructed in WordPress.
 
-    - It is heavily inspired by [The DependencyInjection Component](https://symfony.com/doc/current/components/dependency_injection.html) from Symfony.
+    - It is heavily inspired by [The DependencyInjection Component](https://symfony.com/doc/current/components/dependency_injection.html) from **Symfony**.
