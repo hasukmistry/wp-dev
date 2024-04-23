@@ -1,2 +1,6 @@
 # Ignore vendor directory
 /vendor
+
+# Ignore temp-plugin directory
+/temp-plugin
+wp-dev.zip
