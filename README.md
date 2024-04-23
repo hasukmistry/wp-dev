@@ -100,7 +100,7 @@ services:
 Once the service is defined in the configuration file (`services.yaml`), the Dependency Injection Component for WordPress will take place. By default, no services are loaded from the container. You can load services by using the following filter,
 
 ```php
-add_filter( 'wp_dev_service_aliases', function( array $service_aliases ): array {
+add_filter( 'wp_dev_load_services', function( array $service_aliases ): array {
 	return array_merge( $service_aliases, array( 'myService' ) );
 });
 ```
