@@ -109,7 +109,7 @@ add_filter( 'wp_dev_load_services', function( array $service_aliases ): array {
 
 ## Examples
 
-Check out the [examples](https://github.com/hasukmistry/wp-dev-examples) repo to understand plugin usage.
+Check out the [examples](https://github.com/hasukmistry/wp-dev-examples) repo to understand the plugin usage.
 
 ## License
 
