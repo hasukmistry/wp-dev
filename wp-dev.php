@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Wp-Dev
  * Plugin URI:
- * Description: The DependencyInjection Component For WordPress
+ * Description: A simple yet powerful WordPress plugin that enhances the developer's capability.
  * Version: 1.0.0
  * Author: Hasmukh Mistry
  * Author URI:

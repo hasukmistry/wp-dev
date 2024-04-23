@@ -1,6 +1,6 @@
 {
     "name": "hasukmistry/wp-dev",
-    "description": "The DependencyInjection Component For WordPress",
+    "description": "A simple yet powerful WordPress plugin that enhances the developer's capability.",
     "type": "composer-plugin",
     "license": "GPL-2.0+",
     "authors": [
