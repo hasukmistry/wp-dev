@@ -15,6 +15,9 @@ This plugin introduces following features:
     - [Prerequisites](#prerequisites)
     - [Make Commands](#make-commands)
         - [Build](#build)
+- [Creating a Yaml File](#creating-a-yaml-file)
+    - [Changing a Config Dir](#changing-a-config-dir)
+    - [Changing a Config File](#changing-a-config-file)
 
 ## Building WordPress Plugin Archive
 
@@ -45,3 +48,30 @@ This command will create a new file called `wp-dev.zip` in the current directory
 
 The `wp-dev.zip` file is a self-contained archive that can be easily installed on a WordPress site.
 
+## Creating a Yaml File
+
+This plugin uses a YAML to write the definitions for the services. In anything but the smallest applications it makes sense to organize the service definitions by moving them into one or more configuration files. 
+
+By default, the plugin will look for a file called **services.yaml** in the **`/wp-content/config`** directory.
+
+**services.yaml** follows the convention of the [Configuration Files](https://symfony.com/doc/current/components/dependency_injection.html#setting-up-the-container-with-configuration-files) defined in the documentation.
+
+### Changing a Config Dir
+
+By default, the plugin will look for the configuration files in the **`/wp-content/config`** directory. However, you can change the location of the configuration directory by using the following filter,
+
+```php
+add_filter( 'wp_dev_config_dir', function( string $config_dir ): string {
+	return WP_CONTENT_DIR . '/custom-config';
+});
+```
+
+### Changing a Config File
+
+By default, the plugin will look for the **services.yaml** in the **`/wp-content/config`** directory. However, you can change the name of the configuration file by using the following filter,
+
+```php
+add_filter( 'wp_dev_config_file', function( string $config_file ): string {
+	return 'custom.yaml';
+});
+```
