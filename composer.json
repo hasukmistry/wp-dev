@@ -1,0 +1,36 @@
+{
+    "name": "hasukmistry/wp-dev",
+    "description": "The DependencyInjection Component For WordPress",
+    "type": "composer-plugin",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Hasmukh K Mistry",
+            "email": "hasmukhmistry137@gmail.com"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "platform": {
+            "php": "8.0"
+        }
+    },
+    "autoload": {
+        "classmap": ["src/"]
+    },
+    "scripts": {
+        "phpcs": "phpcs"
+    },
+    "require": {
+        "php": "^8.0",
+        "symfony/dependency-injection": "^5.3",
+        "symfony/config": "^5.3",
+        "symfony/yaml": "^5.3"
+    },
+    "require-dev": {
+        "wp-coding-standards/wpcs": "^3.0",
+        "phpcompatibility/phpcompatibility-wp": "^2.1"
+    }
+}
