@@ -58,7 +58,7 @@ By default, the plugin will look for a file called **services.yaml** in the **`/
 
 ### Changing a Config Dir
 
-By default, the plugin will look for the configuration files in the **`/wp-content/config`** directory. However, you can change the location of the configuration directory by using the following filter,
+By default, the plugin will look for the configuration file in the **`/wp-content/config`** directory. However, you can change the location of the configuration directory by using the following filter,
 
 ```php
 add_filter( 'wp_dev_config_dir', function( string $config_dir ): string {
