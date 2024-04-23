@@ -19,6 +19,7 @@ This plugin introduces following features:
     - [Changing a Config Dir](#changing-a-config-dir)
     - [Changing a Config File](#changing-a-config-file)
 - [Registering Services](#registering-services)
+- [Examples](#examples)
 - [License](#license)
 
 ## Building WordPress Plugin Archive
@@ -105,6 +106,10 @@ add_filter( 'wp_dev_load_services', function( array $service_aliases ): array {
 	return array_merge( $service_aliases, array( 'myService' ) );
 });
 ```
+
+## Examples
+
+Check out the [examples](https://github.com/hasukmistry/wp-dev-examples) repo to understand plugin usage.
 
 ## License
 
