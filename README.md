@@ -41,7 +41,7 @@ To build the WordPress plugin archive, run the following command:
 make build
 ```
 
-This command will create a new directory called `wp-dev.zip` in the current directory, which includes all the necessary files and directories for the plugin.
+This command will create a new file called `wp-dev.zip` in the current directory, which includes all the necessary files and directories for the plugin.
 
 The `wp-dev.zip` file is a self-contained archive that can be easily installed on a WordPress site.
 
