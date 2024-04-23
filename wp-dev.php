@@ -3,7 +3,7 @@
  * Plugin Name: Wp-Dev
  * Plugin URI:
  * Description: A simple yet powerful WordPress plugin that enhances the developer's capability.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Hasmukh Mistry
  * Author URI:
  * License: GPL-2.0+
