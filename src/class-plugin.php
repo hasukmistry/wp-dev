@@ -62,6 +62,11 @@ class Plugin {
 				$config_dir  = apply_filters( 'wp_dev_config_dir', WP_CONTENT_DIR . '/config' );
 				$config_file = apply_filters( 'wp_dev_config_file', 'services.yaml' );
 
+				// Bail early if the config file has not been created yet.
+				if ( ! file_exists( $config_dir . '/' . $config_file ) ) {
+					return;
+				}
+
 				// Set config service.
 				Service::instance()
 					->set_config(
