@@ -28,6 +28,15 @@ class Container {
 	private static $instance;
 
 	/**
+	 * Container builder instance.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var ContainerBuilder
+	 */
+	private static $builder;
+
+	/**
 	 * Get the container instance.
 	 *
 	 * @since 1.0.0
@@ -41,15 +50,6 @@ class Container {
 
 		return self::$instance;
 	}
-
-	/**
-	 * Container builder instance.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @var ContainerBuilder
-	 */
-	private static $builder;
 
 	/**
 	 * Register a given service in the container.
