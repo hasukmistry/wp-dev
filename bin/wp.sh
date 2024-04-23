@@ -16,7 +16,7 @@ cp ./LICENSE ./temp-plugin/
 mkdir -p ./temp-plugin/src/ && cp -R ./src/* ./temp-plugin/src/
 
 # 4 - install required composer dependencies
-docker run --rm -v "$(pwd)/temp-plugin:/app" composer install
+docker run --rm -v "$(pwd)/temp-plugin:/app" composer install --no-dev --optimize-autoloader
 docker run --rm -v "$(pwd)/temp-plugin:/app" composer dump-autoload -o
 
 # 5 - Cleanup
