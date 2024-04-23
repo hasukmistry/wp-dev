@@ -77,7 +77,7 @@ class Service {
 		$container = Container::instance();
 
 		$services = apply_filters(
-			'wp_dev_service_aliases',
+			'wp_dev_load_services',
 			array()
 		);
 
