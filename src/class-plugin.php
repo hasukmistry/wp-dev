@@ -55,9 +55,9 @@ class Plugin {
 			return;
 		}
 
-		// Spin up the service config and containers.
+		// Spin up the service config and container.
 		add_action(
-			'init',
+			'wp_loaded',
 			function () {
 				$config_dir  = apply_filters( 'wp_dev_config_dir', WP_CONTENT_DIR . '/config' );
 				$config_file = apply_filters( 'wp_dev_config_file', 'services.yaml' );
