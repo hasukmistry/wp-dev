@@ -18,6 +18,7 @@ This plugin introduces following features:
 - [Creating a Yaml File](#creating-a-yaml-file)
     - [Changing a Config Dir](#changing-a-config-dir)
     - [Changing a Config File](#changing-a-config-file)
+- [Registering Services](#registering-services)
 
 ## Building WordPress Plugin Archive
 
@@ -73,5 +74,33 @@ By default, the plugin will look for the **services.yaml** in the **`/wp-content
 ```php
 add_filter( 'wp_dev_config_file', function( string $config_file ): string {
 	return 'custom.yaml';
+});
+```
+
+## Registering Services
+
+To register a service in the container make sure your service class has **__invoke()** method defined.
+
+```php
+class MyService {
+    public function __invoke() {
+        // Do WordPress stuff
+    }
+}
+```
+
+As a second step, you need to register the service in the configuration file (`services.yaml`).
+
+```yaml
+services:
+    myService:
+        class: MyService
+```
+
+Once the service is defined in the configuration file (`services.yaml`), the Dependency Injection Component for WordPress will take place. By default, no services are loaded from the container. You can load services by using the following filter,
+
+```php
+add_filter( 'wp_dev_service_aliases', function( array $service_aliases ): array {
+	return array_merge( $service_aliases, array( 'myService' ) );
 });
 ```
