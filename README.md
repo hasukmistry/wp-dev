@@ -38,9 +38,11 @@ Before you begin, ensure you have met the following requirements:
 
 #### Build
 
-Before using the `make build` command, Make sure that `./bin/wp.sh` is executable. 
+Ensure that `./bin/wp.sh` is executable before using the `make build` command: 
 
-`chmod +x ./bin/wp.sh` should do the job.
+```
+chmod +x ./bin/wp.sh
+```
 
 To build the WordPress plugin archive, run the following command:
 
@@ -48,21 +50,17 @@ To build the WordPress plugin archive, run the following command:
 make build
 ```
 
-This command will create a new file called `wp-dev.zip` in the current directory, which includes all the necessary files and directories for the plugin.
-
-The `wp-dev.zip` file is a self-contained archive that can be easily installed on a WordPress site.
+This command generates `wp-dev.zip`, a self-contained archive ready for WordPress installation.
 
 ## Creating a Yaml File
 
-This plugin uses a YAML to write the definitions for the services. In anything but the smallest applications it makes sense to organize the service definitions by moving them into one or more configuration files. 
-
-By default, the plugin will look for a file called **services.yaml** in the **`/wp-content/config`** directory.
+Wp Dev utilizes YAML for service definitions, promoting organization and scalability in applications. By default, it searches for **services.yaml** in `/wp-content/config`.
 
 **services.yaml** follows the convention of the [Configuration Files](https://symfony.com/doc/current/components/dependency_injection.html#setting-up-the-container-with-configuration-files) defined in the documentation.
 
 ### Changing a Config Dir
 
-By default, the plugin will look for the configuration file in the **`/wp-content/config`** directory. However, you can change the location of the configuration directory by using the following filter,
+Modify the configuration directory using the `wp_dev_config_dir` filter,
 
 ```php
 add_filter( 'wp_dev_config_dir', function( string $config_dir ): string {
@@ -72,7 +70,7 @@ add_filter( 'wp_dev_config_dir', function( string $config_dir ): string {
 
 ### Changing a Config File
 
-By default, the plugin will look for the **services.yaml** in the **`/wp-content/config`** directory. However, you can change the name of the configuration file by using the following filter,
+Alter the configuration file name with the `wp_dev_config_file` filter,
 
 ```php
 add_filter( 'wp_dev_config_file', function( string $config_file ): string {
@@ -82,7 +80,7 @@ add_filter( 'wp_dev_config_file', function( string $config_file ): string {
 
 ### Using an Environment Variables
 
-This plugin also adds support for WordPress environment variables via a configuration file. By default following environment variables are supported,
+Wp Dev supports WordPress environment variables via configuration files. Default supported variables include,
 
 - WP_ENVIRONMENT_TYPE
 - DB_NAME
@@ -100,9 +98,7 @@ This plugin also adds support for WordPress environment variables via a configur
 - WP_SITE_URL
 - WP_HOME_URL
 
-When using it in the configuration file, **wp_env** should be prefixed with the above variable name.
-
-For example,
+Referencing these variables in YAML is straightforward:
 
 ```yaml
 services:
@@ -114,7 +110,7 @@ services:
 
 ## Registering Services
 
-To register a service in the container make sure your service class has **__invoke()** method defined.
+To register a service, ensure your service class defines the **__invoke()** method. Then, add it to services.yaml:
 
 ```php
 class MyService {
@@ -124,15 +120,13 @@ class MyService {
 }
 ```
 
-As a second step, you need to register the service in the configuration file (`services.yaml`).
-
 ```yaml
 services:
     myService:
         class: MyService
 ```
 
-Once the service is defined in the configuration file (`services.yaml`), the Dependency Injection Component for WordPress will take place. By default, no services are loaded from the container. You can load services by using the following filter,
+To load services from the container, use the wp_dev_load_services filter:
 
 ```php
 add_filter( 'wp_dev_load_services', function( array $service_aliases ): array {
@@ -142,8 +136,8 @@ add_filter( 'wp_dev_load_services', function( array $service_aliases ): array {
 
 ## Examples
 
-Check out the [examples](https://github.com/hasukmistry/wp-dev-examples) repo to understand the plugin usage.
+Explore this [GitHub repository](https://github.com/hasukmistry/wp-dev-examples) for usage examples.
 
 ## License
 
-This repository is a free software, and is released under the terms of the GNU General Public License version 2 or (at your option) any later version. See [LICENSE](./LICENSE) for complete license.
+Wp Dev is free software released under the GNU General Public License version 2 or any later version. Refer to [LICENSE](./LICENSE) for details.
