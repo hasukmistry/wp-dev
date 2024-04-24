@@ -1,14 +1,14 @@
-# Wp Dev
+# Wp Dev: Empower Your WordPress Development
 
-A simple yet powerful WordPress plugin that enhances the developer's capability.
+Wp Dev is a versatile WordPress plugin designed to streamline and enhance the capabilities of developers. By leveraging the DependencyInjection Component, it offers a standardized and centralized approach to object construction within WordPress. Inspired by Symfony's DependencyInjection Component, this plugin equips developers with powerful tools to optimize their workflow.
 
-This plugin introduces following features:
+Features:
 
 - The DependencyInjection Component For WordPress
 
-    - It allows you to standardize and centralize the way objects are constructed in WordPress.
+    - Standardize and centralize object construction.
 
-    - It is heavily inspired by [The DependencyInjection Component](https://symfony.com/doc/current/components/dependency_injection.html) from **Symfony**.
+    - Inspired by [The DependencyInjection Component](https://symfony.com/doc/current/components/dependency_injection.html) from **Symfony**.
 
 ## Table of content
 - [Building WordPress Plugin Archive](#building-wordpress-plugin-archive)
